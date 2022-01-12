@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+
+  app:
+    build: ./modules/app/.docker/
+    container_name: to_do_list
+    env_file: .env
+    restart: on-failure
+    ports: 
+      - ${PORT}:${PORT}
+    volumes:
+      - ./modules/app:/home/node/app
+    entrypoint: ./.docker/entrypoint.sh
+    networks:
+      - to-do-list-network
+networks:
+  to-do-list-network:
+    driver: bridge
+  
+
