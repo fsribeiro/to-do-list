@@ -14,8 +14,22 @@ services:
     entrypoint: ./.docker/entrypoint.sh
     networks:
       - to-do-list-network
+  mongo_db_one:
+    build: ./modules/mongo/.docker/
+    container_name: mongo_db_cadastro_api
+    env_file: .env
+    environment:
+    - MONGO_API_INITDB_ROOT_USERNAME=root
+    - MONGO_API_INITDB_ROOT_PASSWORD=root
+    ports: 
+      - 27017:27017
+    volumes:
+      - ./modules/mongo/data/db:/data/db
+    networks:
+      - to-do-list-network
+    command: [ --auth ]
 networks:
   to-do-list-network:
     driver: bridge
-  
+
 
