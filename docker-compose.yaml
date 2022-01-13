@@ -12,6 +12,8 @@ services:
     volumes:
       - ./modules/app:/home/node/app
     entrypoint: ./.docker/entrypoint.sh
+    depends_on:
+      - mongo_db_one
     networks:
       - to-do-list-network
   mongo_db_one:

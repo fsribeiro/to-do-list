@@ -32,6 +32,8 @@
     "jest": "^27.4.7"
   },
   "dependencies": {
+    "@nestjs/mongoose": "^9.0.2",
+    "mongoose": "^6.1.6",
     "prettier": "^2.5.1"
   }
 }
