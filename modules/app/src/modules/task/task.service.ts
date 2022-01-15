@@ -2,28 +2,28 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ObjectId } from 'mongodb';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User, UserDocument } from './entities/user.entity';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateUserDto } from './dto/update-task.dto';
+import { Task, TaskDocument } from './entities/task.entity';
 
 @Injectable()
-export class UserService {
+export class TaskService {
    /**
    * construtor da classe para injetar as dependências necessárias
-   * @param userModel - model para lidar com os métodos do banco
+   * @param taskModel - model para lidar com os métodos do banco
    */
   constructor(
-    @InjectModel(User.name)
-    private userModel: Model<UserDocument>,
+    @InjectModel(Task.name)
+    private taskModel: Model<TaskDocument>,
   ) {}
   
    /**
    * método responsável por criar um novo usuário no banco de dados
    * @param id - identificado único do usuário no banco de dados
    */
-  async create(createUserDto: CreateUserDto) {
+  async create(createTaskDto: CreateTaskDto) {
     try {
-      const resp = await this.userModel.create(createUserDto);
+      const resp = await this.taskModel.create(createTaskDto);
       return resp;
     }catch (error) {
       return error;
@@ -36,7 +36,7 @@ export class UserService {
    */
   async findAll() {
     try {
-      const resp = await this.userModel.find();
+      const resp = await this.taskModel.find();
       return resp;
     }catch (error) {
       return error;
@@ -49,7 +49,7 @@ export class UserService {
    */
   async findOne(id: string) {
     try {
-      const resp = await this.userModel.findOne({ _id: id });
+      const resp = await this.taskModel.findOne({ _id: id });
       return resp;
     }catch (error) {
       return error;
@@ -61,10 +61,8 @@ export class UserService {
    * @param id - identificado único do usuário no banco de dados
    */
   async update(id: string, data: UpdateUserDto) {
-    data.dataInclusao = new Date();
-
     try {
-      const resp = await this.userModel.updateOne(
+      const resp = await this.taskModel.updateOne(
         {
           _id: new ObjectId(id),
         },
@@ -84,7 +82,7 @@ export class UserService {
    */
   async remove(id: string) {
     try {
-      const resp = await this.userModel.deleteOne({ _id: id });
+      const resp = await this.taskModel.deleteOne({ _id: id });
       return resp;
     } catch (error) {
       return error;

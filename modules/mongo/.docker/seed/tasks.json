@@ -1,0 +1,16 @@
+[
+  {
+      "_id": {
+          "$oid": "5ae5127912473b0d147c93d7"
+      },
+      "titulo": "Fazer compra do mês no mercado",
+      "responsavel": "Cintia",
+      "dataInicio": {
+        "$date": "2022-01-15T21:31:53.748Z"
+      },
+      "dataFim": {
+        "$date": "2022-01-31T21:31:53.748Z"
+      },
+      "resumoTarefa": "Ir ao mercado chibata e realizar a compra de comida e materiais de limpeza e para higiene pessoal"
+  }
+]

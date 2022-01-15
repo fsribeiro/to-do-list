@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { TaskService } from './task.service';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateUserDto } from './dto/update-task.dto';
 
-@Controller('user')
+@Controller('task')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: TaskService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
+  async create(@Body() createUserDto: CreateTaskDto) {
     const resp = this.userService.create(createUserDto);
     return resp;
   }
